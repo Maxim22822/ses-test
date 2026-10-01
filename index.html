@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тест — санитарно-эпидемиологическое дело</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section id="startScreen" class="screen">
+      <div class="hero">
+        <div class="badge">JS TEST</div>
+        <h1>Тест по санитарно-эпидемиологическому делу</h1>
+        <p class="lead">Вопросы загружены из предоставленного Word-файла. Знак «+» в исходнике используется как правильный ответ.</p>
+      </div>
+
+      <div class="card settings">
+        <h2>Настройки прохождения</h2>
+        <div class="test-selector">
+          <label for="testSelect">Выберите тест</label>
+          <select id="testSelect"></select>
+          <div id="testDescription" class="test-description"></div>
+        </div>
+
+        <label class="field">
+          <span>Количество вопросов</span>
+          <select id="countSelect">
+            <option value="all">Все вопросы</option>
+            <option value="20">20 случайных</option>
+            <option value="50">50 случайных</option>
+            <option value="100">100 случайных</option>
+          </select>
+        </label>
+
+        <div class="mode-grid">
+          <label class="mode-card">
+            <input type="radio" name="mode" value="exam" checked>
+            <span>
+              <b>Экзамен</b>
+              <small>Ответы проверяются после завершения.</small>
+            </span>
+          </label>
+          <label class="mode-card">
+            <input type="radio" name="mode" value="practice">
+            <span>
+              <b>Тренировка</b>
+              <small>После ответа сразу показывается результат.</small>
+            </span>
+          </label>
+        </div>
+
+        <button id="startBtn" class="btn primary">Начать тест</button>
+        <p class="muted"><span id="totalQuestions"></span></p>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen hidden">
+      <header class="quiz-header">
+        <div>
+          <div class="eyebrow" id="sectionLabel">Тест</div>
+          <h1 id="questionCounter">Вопрос 1</h1>
+        </div>
+        <button id="quitBtn" class="btn ghost">Выйти</button>
+      </header>
+
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progressBar"></div></div>
+        <span id="progressText">0%</span>
+      </div>
+
+      <article class="card question-card">
+        <div class="question-meta">
+          <span id="answerType"></span>
+        </div>
+        <h2 id="questionText"></h2>
+        <p id="instruction" class="instruction"></p>
+        <div id="options" class="options"></div>
+
+        <div id="feedback" class="feedback hidden"></div>
+
+        <div class="actions">
+          <button id="checkBtn" class="btn primary">Проверить</button>
+          <button id="nextBtn" class="btn primary hidden">Следующий вопрос</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="resultScreen" class="screen hidden">
+      <div class="card result-card">
+        <div class="result-circle"><span id="scorePercent">0%</span></div>
+        <h1>Тест завершён</h1>
+        <p id="scoreSummary" class="lead"></p>
+
+        <div class="stats">
+          <div><b id="correctCount">0</b><span>правильных</span></div>
+          <div><b id="wrongCount">0</b><span>ошибок</span></div>
+          <div><b id="passedCount">0</b><span>вопросов</span></div>
+        </div>
+
+        <div class="result-actions">
+          <button id="restartBtn" class="btn primary">Пройти заново</button>
+          <button id="reviewBtn" class="btn secondary">Посмотреть ошибки</button>
+        </div>
+      </div>
+
+      <div id="review" class="card review hidden">
+        <h2>Разбор ошибок</h2>
+        <div id="reviewList"></div>
+      </div>
+    </section>
+  </main>
+  <script src="questions.js"></script>
+  <script src="questions-stom.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
